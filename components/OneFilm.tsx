@@ -47,7 +47,7 @@ const OneFilm = ({
             {imageData && imageData.length > 0 && (
               <Image
                 src={imageData[0].url}
-                alt={title}
+                alt={originalTitle}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 1200px"
                 className="object-cover object-center"
@@ -66,7 +66,7 @@ const OneFilm = ({
         <div className="xl:w-1/3">
           {title && (
             <div className="flex flex-col items-left text-2xl mt-5">
-              <strong>{title.toUpperCase()}</strong>
+              <strong>{title.fr}</strong>
             </div>
           )}
           {category && (
@@ -77,7 +77,7 @@ const OneFilm = ({
           {createdYear && <div className="font-bold">{createdYear}</div>}
           {synopsis && (
             <div className="flex flex-col items-left text-sm my-5">
-              <div className="text-base font-light">{synopsis}</div>
+              <div className="text-base font-light">{synopsis.fr}</div>
             </div>
           )}
         </div>
@@ -228,7 +228,7 @@ const OneFilm = ({
                   target="_blank"
                   className={`link ${styles.PostLink}`}
                 >
-                  {title}
+                  {originalTitle}
                 </Link>
               )}
             </div>

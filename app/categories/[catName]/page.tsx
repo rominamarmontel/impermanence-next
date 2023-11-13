@@ -12,7 +12,7 @@ const CategoryFilms = ({ params }: { params: { catName: string } }) => {
     const getFilms = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/categories/${category}`,
+          `${process.env.NEXTAUTH_URL}/api/categories/${category}`,
           {
             cache: 'no-store',
           }
@@ -37,7 +37,7 @@ const CategoryFilms = ({ params }: { params: { catName: string } }) => {
       if (yearComparison !== 0) {
         return yearComparison
       }
-      return a.title.localeCompare(b.title)
+      return a.originalTitle.localeCompare(String(b.originalTitle))
     }
     return 0
   })

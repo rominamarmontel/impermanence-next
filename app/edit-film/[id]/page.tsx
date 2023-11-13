@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation'
 
 const getFilmById = async (id: string): Promise<TFilm | null> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/films/${id}`, {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/films/${id}`, {
       cache: 'no-store',
     })
     if (!res.ok) {

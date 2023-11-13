@@ -42,10 +42,17 @@ export const POST = async (req:Request) => {
     links,
     imageData,
 } = await req.json()
+const parsedTitle = JSON.parse(title);
+const parsedSynopsis = JSON.parse(synopsis);
+
 
 const categoryId = await findCategoryIdByCatName(catName)
 await connectMongoDB()
-const newFilm = await Film.create({title, 
+const newFilm = await Film.create({
+  title: {
+    en: parsedTitle.en,
+    fr: parsedTitle.fr,
+  },
   originalTitle,
   copyright,
   directedBy,
@@ -53,7 +60,10 @@ const newFilm = await Film.create({title,
   author,
   format,
   duration,
-  synopsis,
+  synopsis: {
+    en: parsedSynopsis.en,
+    fr: parsedSynopsis.fr,
+  },
   partner,
   createdYear,
   festivalsAndAwards,
@@ -68,7 +78,8 @@ const newFilm = await Film.create({title,
   imageData,
 })
 await newFilm.save();
-  return NextResponse.json({message:"Film Created"}, {status: 201})
+console.log(newFilm)
+  return NextResponse.json({response: newFilm})
 }
 
 

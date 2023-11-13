@@ -2,7 +2,10 @@ import mongoose, { Schema, models } from 'mongoose'
 
 const filmSchema = new Schema(
   {
-    title: String,
+    title: {
+      en: String,
+      fr: String,
+    },
     originalTitle: String,
     copyright: String,
     directedBy: String,
@@ -10,7 +13,10 @@ const filmSchema = new Schema(
     author: String,
     format: String,
     duration: String,
-    synopsis: String,
+    synopsis: {
+      en: String,
+      fr: String,
+    },
     partner: String,
     createdYear: String,
     festivalsAndAwards: String,

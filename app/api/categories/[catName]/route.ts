@@ -21,11 +21,10 @@ export const GET = async (
     await connectMongoDB();
 
     const films = await Film.find({ category: categoryId }).populate('category');
-
     const movies = films.map((film) => {
       const {
         _id,
-        title, 
+        title,
         originalTitle,
         copyright,
         directedBy,
@@ -50,7 +49,10 @@ export const GET = async (
 
       return {
         _id,
-        title, 
+        title: {
+          en: title?.en || '',
+          fr: title?.fr || '',
+        },
         originalTitle,
         copyright,
         directedBy,
@@ -58,7 +60,10 @@ export const GET = async (
         author, 
         format,
         duration,
-        synopsis,
+        synopsis: {
+          en: synopsis?.en || '',
+          fr: synopsis?.fr || '',
+        },
         partner,
         createdYear,
         festivalsAndAwards,

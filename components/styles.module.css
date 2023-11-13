@@ -122,6 +122,48 @@
     font-weight: 300;
 }
 
+.Form {
+    background-color: #f4ede6;
+    width: 100%;
+}
+.FormEdit {
+    width: 100%;
+    background-color: rgb(195, 247, 230);
+}
+.FormContent {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.FormTitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2rem;
+    color: #333333;
+    padding-bottom: 100px;
+}
+.DashboardTitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2rem;
+    color: #333333;
+}
+.AboutTitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2.5rem;
+    color: #333333;
+    margin-bottom: 50px;
+}
+.AboutText {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #333333;
+    letter-spacing: 0;
+}
 
 @media (max-width: 992px) {
 .NavbarTitleSmall {
@@ -180,5 +222,4 @@
     z-index: 999;
     background-color: white;
   }
-
   }

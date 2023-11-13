@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { TCategory, TFilm } from '@/types'
 import Link from 'next/link'
 import { DeleteButton } from './DeleteButton'
+import styles from './styles.module.css'
 
 const DashboardTop = () => {
   const [films, setFilms] = useState<TFilm[]>([])
@@ -13,6 +14,7 @@ const DashboardTop = () => {
         const res = await fetch(`${process.env.NEXTAUTH_URL}/api/films`)
         if (res.ok) {
           const data = await res.json()
+          console.log(data)
           setFilms(data)
         }
       } catch (error) {
@@ -24,7 +26,7 @@ const DashboardTop = () => {
 
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1 className={styles.DashboardTitle}>Dashboard</h1>
       <div className="flex flex-wrap justify-start mt-10">
         <table className="table-auto w-full">
           <thead>
@@ -40,10 +42,10 @@ const DashboardTop = () => {
               ? films.map((film: TFilm) => (
                   <tr key={film._id}>
                     <th className="px-4 py-2 text-left border-b border-l border-r">
-                      {film.category.catName}
+                      {film.category?.catName || 'Unknown Category'}
                     </th>
                     <td className="px-4 py-2 text-left border-b border-r">
-                      {film.title}
+                      {film.title.fr}
                     </td>
                     <td className="px-4 py-2 border-b border-r">
                       {film.createdYear}

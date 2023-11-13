@@ -11,7 +11,10 @@ export type TCategory = {
 export type TFilm = {
   _id: string
   category: TCategory
-  title: string
+  title: {
+    en: string
+    fr: string
+  }
   originalTitle: string
   copyright?: string
   directedBy?: string
@@ -19,7 +22,10 @@ export type TFilm = {
   author?: string
   format?: string
   duration?: string
-  synopsis?: string
+  synopsis?: {
+    en: string
+    fr: string
+  }
   partner?: string
   genre?: string
   festivalsAndAwards?: string

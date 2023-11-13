@@ -8,6 +8,7 @@ const getFilms = async (): Promise<TFilm[] | null> => {
     })
     if (res.ok) {
       const films = await res.json()
+      console.log(films)
       return films
     }
   } catch (error) {
@@ -27,7 +28,7 @@ export default async function Home() {
       if (yearComparison !== 0) {
         return yearComparison
       }
-      return a.title.localeCompare(b.title)
+      return a.originalTitle.localeCompare(b.originalTitle)
     }
     return 0
   })
