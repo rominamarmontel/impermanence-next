@@ -1,0 +1,40 @@
+.openbtn1{
+  position: fixed;
+  z-index: 9999;
+  top:10px;
+  right: 10px;
+  cursor: pointer;
+  width: 70px;
+  height:70px;
+}
+/*×に変化*/
+.openbtn1 span{
+  display: inline-block;
+  transition: all .4s;
+  position: absolute;
+  left: 14px;
+  height: 2px;
+  background-color:gray;
+  width: 45%;
+  border-radius: 2px;
+  }
+.openbtn1 span:nth-of-type(1) {
+  top:22px; 
+  width: 50%;
+}
+.openbtn1 span:nth-of-type(2) {
+  top:29px;
+  width:30%;
+}
+.openbtn1.active span:nth-of-type(1) {
+  top: 20px;
+  left: 16px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 35%;
+}
+.openbtn1.active span:nth-of-type(2) {
+  top: 32px;
+  left: 16px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 35%;
+}
