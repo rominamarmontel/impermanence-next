@@ -43,8 +43,8 @@ const OneFilm = ({
     <div className="w-full h-full">
       <div className="xl:flex gap-12">
         <div className="xl:w-2/3 md:w-full aspect-video relative">
-          <div className="">
-            {imageData && imageData.length > 0 && (
+          {imageData && imageData.length > 0 && (
+            <div className="image-container">
               <Image
                 src={imageData[0].url}
                 alt={originalTitle}
@@ -53,15 +53,13 @@ const OneFilm = ({
                 className="object-cover object-center"
                 priority
               />
-            )}
-          </div>
-          <div className="absolute bottom-0 right-3 text-white font-light shadow-lg">
-            {copyright && (
-              <div className="flex flex-col items-left text-sm my-5">
-                <div>&copy;{copyright}</div>
-              </div>
-            )}
-          </div>
+            </div>
+          )}
+          {copyright && (
+            <div className="flex text-sm my-5 absolute bottom-0 right-3 text-white font-light shadow-lg">
+              &copy;{copyright}
+            </div>
+          )}
         </div>
         <div className="xl:w-1/3">
           {title && (
@@ -77,7 +75,7 @@ const OneFilm = ({
           {createdYear && <div className="font-bold">{createdYear}</div>}
           {synopsis && (
             <div className="flex flex-col items-left text-sm my-5">
-              <div className="text-base font-light">{synopsis.fr}</div>
+              <div className="textp">{synopsis.fr}</div>
             </div>
           )}
         </div>
@@ -86,14 +84,16 @@ const OneFilm = ({
       {originalTitle && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>TITLE ORIGINAL</strong>
-          <div>{originalTitle}</div>
+          <div className="textp">{originalTitle}</div>
         </div>
       )}
       {directedBy && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>RÉALISATION</strong>
           {directedBy.split('\n').map((line, index) => (
-            <div key={index}>{line}</div>
+            <div key={index} className="textp">
+              {line}
+            </div>
           ))}
         </div>
       )}
@@ -101,7 +101,9 @@ const OneFilm = ({
         <div className="flex flex-col items-left text-sm my-5">
           <strong>PRODUCTION</strong>
           {producedBy.split('\n').map((line, index) => (
-            <div key={index}>{line}</div>
+            <div key={index} className="textp">
+              {line}
+            </div>
           ))}
         </div>
       )}
@@ -111,20 +113,22 @@ const OneFilm = ({
             {author && author.includes('\n') ? 'AUTEUR(E)S' : 'AUTEUR(E)'}
           </strong>
           {author.split('\n').map((line, index) => (
-            <div key={index}>{line}</div>
+            <div key={index} className="textp">
+              {line}
+            </div>
           ))}
         </div>
       )}
       {format && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>FORMAT</strong>
-          <div>{format}</div>
+          <div className="textp">{format}</div>
         </div>
       )}
       {duration && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>DUREE</strong>
-          <div>{duration}</div>
+          <div className="textp">{duration}</div>
         </div>
       )}
 
@@ -134,7 +138,9 @@ const OneFilm = ({
             {partner && partner.includes('\n') ? 'PARTENAIRES' : 'PARTENAIRE'}
           </strong>
           {partner.split('\n').map((line, index) => (
-            <div key={index}>{line}</div>
+            <div key={index} className="textp">
+              {line}
+            </div>
           ))}
         </div>
       )}
@@ -142,41 +148,47 @@ const OneFilm = ({
         <div className="flex flex-col items-left text-sm my-5">
           <strong>FESTIVALS & RÉCOMPENSES</strong>
           {festivalsAndAwards.split('\n').map((line, index) => (
-            <div key={index}>{line}</div>
+            <div key={index} className="textp">
+              {line}
+            </div>
           ))}
         </div>
       )}
       {distribution && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>DISTRIBUTION</strong>
-          <div>{distribution}</div>
+          <div className="textp">{distribution}</div>
         </div>
       )}
       {internationalSales && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>VENTES INTERNATIONALES</strong>
           {internationalSales.split('\n').map((line, index) => (
-            <div key={index}>{line}</div>
+            <div key={index} className="textp">
+              {line}
+            </div>
           ))}
         </div>
       )}
       {stageOfProduction && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>ÉTAPE DE PRODUCTION</strong>
-          <div>{stageOfProduction}</div>
+          <div className="textp">{stageOfProduction}</div>
         </div>
       )}
       {genre && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>GENRE</strong>
-          <div>{genre}</div>
+          <div className="textp">{genre}</div>
         </div>
       )}
       {crew && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>CREW</strong>
           {crew.split('\n').map((line, index) => (
-            <div key={index}>{line}</div>
+            <div key={index} className="textp">
+              {line}
+            </div>
           ))}
         </div>
       )}

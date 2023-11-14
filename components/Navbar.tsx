@@ -9,6 +9,7 @@ import CategoriesList from './CategoriesList'
 import imageAccount from '@/public/images/computer-icons-google-account-icon-design-login-png-favpng-jFjxPac6saRuDE3LiyqsYTEZM.jpg'
 import HambergerMenu from './HambergerMenu '
 import './Navbar.css'
+import { FaVimeo, FaLinkedinIn } from 'react-icons/fa'
 
 const Navbar = () => {
   const { status, data: session } = useSession()
@@ -156,9 +157,45 @@ const Navbar = () => {
               // <Link className="btn" href={'/login'}>
               //   Login
               // </Link>
-              <Link className={styles.About} href={'/about'}>
-                à propos
-              </Link>
+              <>
+                <div className="flex justify-end items-center gap-5">
+                  <ul className="flex gap-5 items-center">
+                    <li>
+                      <Link className={styles.About} href={'/news'}>
+                        news
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className={styles.About} href={'/about'}>
+                        à propos
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className={styles.About} href={'/contact'}>
+                        contact
+                      </Link>
+                    </li>
+                  </ul>
+                  <ul className="flex gap-2">
+                    <li className="text-red-700">
+                      <Link
+                        href="https://vimeo.com/user9555000"
+                        target="_blank"
+                      >
+                        <FaVimeo />
+                      </Link>
+                    </li>
+                    <li className="text-red-700">
+                      <Link
+                        href="https://www.linkedin.com/company/impermanence-films/"
+                        target="_blank"
+                      >
+                        <FaLinkedinIn />
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </>
             )}
           </div>
           <div className="mt-0 grid place-content-center">

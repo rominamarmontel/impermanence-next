@@ -13,7 +13,7 @@ const Film = ({
 }: TFilm) => {
   return (
     <div className="lg:w-[32%] md:w-[49%] sm:w-full">
-      <Link href={`http://localhost:3000/film/${_id}`}>
+      <Link href={`${process.env.NEXTAUTH_URL}/film/${_id}`}>
         <div className="w-full aspect-video relative">
           {imageData && imageData.length > 0 && (
             <Image

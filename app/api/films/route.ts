@@ -78,7 +78,6 @@ const newFilm = await Film.create({
   imageData,
 })
 await newFilm.save();
-console.log(newFilm)
   return NextResponse.json({response: newFilm})
 }
 

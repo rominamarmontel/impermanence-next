@@ -53,6 +53,7 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
       setCategories(catName)
     }
     fetchAllCategoris()
+
     const initValues = () => {
       setTitles(film.title || '')
       const categoryCatName = film.category ? film.category.catName : '-1'
@@ -105,6 +106,7 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
     film.links,
     film.imageData,
   ])
+
   const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
     if (linkInput.trim() !== '') {
@@ -155,35 +157,38 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/api/films/${film._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          category,
-          title: titles,
-          originalTitle,
-          copyright,
-          directedBy,
-          producedBy,
-          author,
-          format,
-          duration,
-          synopsis: synopses,
-          partner,
-          createdYear,
-          festivalsAndAwards,
-          distribution,
-          internationalSales,
-          stageOfProduction,
-          genre,
-          download,
-          crew,
-          links,
-          imageData,
-        }),
-      })
+      const res = await fetch(
+        `${process.env.NEXTAUTH_URL}/api/films/${film._id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            category,
+            title: titles,
+            originalTitle,
+            copyright,
+            directedBy,
+            producedBy,
+            author,
+            format,
+            duration,
+            synopsis: synopses,
+            partner,
+            createdYear,
+            festivalsAndAwards,
+            distribution,
+            internationalSales,
+            stageOfProduction,
+            genre,
+            download,
+            crew,
+            links,
+            imageData,
+          }),
+        }
+      )
 
       if (res.ok) {
         toast.success('Update film successfully')
@@ -464,7 +469,7 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
                 style={{ display: 'inline-block' }}
               >
                 <Image
-                  src={image.url}
+                  src={imageUrl}
                   alt={originalTitle}
                   width={150}
                   height={150}

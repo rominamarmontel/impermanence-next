@@ -23,8 +23,8 @@ const HambergerMenu: FC<HambergerProps> = ({ open, id, close }) => {
         </Link>
         <ul>
           <li>
-            <Link href={'/about'} onClick={handleClick}>
-              à propos
+            <Link href={'/news'} onClick={handleClick}>
+              news
             </Link>
           </li>
           <li>
@@ -43,10 +43,19 @@ const HambergerMenu: FC<HambergerProps> = ({ open, id, close }) => {
             </Link>
           </li>
           <li>
-            <Link
-              href={'/categories/programmation'}
-              onClick={handleClick}
-            ></Link>
+            <Link href={'/categories/programmation'} onClick={handleClick}>
+              programmation
+            </Link>
+          </li>
+          <li>
+            <Link href={'/about'} onClick={handleClick}>
+              à propos
+            </Link>
+          </li>
+          <li>
+            <Link href={'/contact'} onClick={handleClick}>
+              contact
+            </Link>
           </li>
         </ul>
       </div>

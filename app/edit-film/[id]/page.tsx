@@ -23,7 +23,7 @@ const getFilmById = async (id: string): Promise<TFilm | null> => {
 export default async function EditFilm({ params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions)
   if (!session) {
-    redirect('/sign-in')
+    redirect('/login')
   }
 
   const id = params.id

@@ -38,3 +38,12 @@ export type TFilm = {
   links?: string[]
   imageData?: { url: string; publicId: string }[];
 }
+
+export type TNews = {
+  _id: string,
+  postTitle: string,
+  post: string,
+  publicId?: string,
+  imageUrl?: string,
+  updatedAt: string
+}

@@ -8,7 +8,6 @@ const getFilms = async (): Promise<TFilm[] | null> => {
     })
     if (res.ok) {
       const films = await res.json()
-      console.log(films)
       return films
     }
   } catch (error) {
@@ -65,7 +64,7 @@ export default async function Home() {
             />
           ))
         ) : (
-          <div>No films to display</div>
+          <div>Loading...</div>
         )}
       </div>
     </>

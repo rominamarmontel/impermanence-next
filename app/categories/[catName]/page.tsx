@@ -74,7 +74,7 @@ const CategoryFilms = ({ params }: { params: { catName: string } }) => {
         ))
       ) : (
         <div style={{ padding: 16 }} className="m-auto text-red-400">
-          No films to display
+          Loading...
         </div>
       )}
     </div>

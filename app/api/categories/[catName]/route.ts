@@ -21,6 +21,7 @@ export const GET = async (
     await connectMongoDB();
 
     const films = await Film.find({ category: categoryId }).populate('category');
+    
     const movies = films.map((film) => {
       const {
         _id,
