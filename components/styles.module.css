@@ -158,12 +158,34 @@
 }
 .AboutText {
     font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 400;
     color: #333333;
     letter-spacing: 0;
 }
+.NewsTitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+}
+.PostTitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+}
+.Icons {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+.english {
+    font-family: 'Playfair Display', serif; 
+    text-align: right;
+    color:#c4010a;
+    cursor: pointer;
+}
+
 
 @media (max-width: 992px) {
 .NavbarTitleSmall {

@@ -14,7 +14,7 @@ const Film = ({
   return (
     <div className="lg:w-[32%] md:w-[49%] sm:w-full">
       <Link href={`${process.env.NEXTAUTH_URL}/film/${_id}`}>
-        <div className="w-full aspect-video relative">
+        <div style={{ position: 'relative' }} className="w-full aspect-video">
           {imageData && imageData.length > 0 && (
             <Image
               src={imageData[0].url}

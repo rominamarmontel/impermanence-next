@@ -3,43 +3,15 @@
 import { TNews } from '@/types'
 import Image from 'next/image'
 import styles from './styles.module.css'
-import {
-  EmailIcon,
-  EmailShareButton,
-  FacebookIcon,
-  FacebookShareButton,
-  FacebookMessengerIcon,
-  FacebookMessengerShareButton,
-  GithubIcon,
-  HatenaIcon,
-  InstagramIcon,
-  InstapaperIcon,
-  LineIcon,
-  LinkedinIcon,
-  LinkedinShareButton,
-  LivejournalIcon,
-  MailruIcon,
-  PinterestIcon,
-  PinterestShareButton,
-  PocketIcon,
-  RedditIcon,
-  RedditShareButton,
-  SpotifyIcon,
-  TelegramIcon,
-  TumblrIcon,
-  TwitterIcon,
-  TwitterShareButton,
-  ViberIcon,
-  VKIcon,
-  WeiboIcon,
-  WhatsappIcon,
-  WhatsappShareButton,
-  WorkplaceIcon,
-} from 'next-share'
+import ShareSns from './ShareSns'
+import Link from 'next/link'
 
 const News = ({ _id, postTitle, post, imageUrl, updatedAt }: TNews) => {
   const dateObject = new Date(updatedAt)
   const options: Intl.DateTimeFormatOptions = {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
     month: 'short',
     day: 'numeric',
     year: 'numeric',
@@ -47,51 +19,37 @@ const News = ({ _id, postTitle, post, imageUrl, updatedAt }: TNews) => {
   const formattedDate = dateObject.toLocaleDateString('fr-FR', options)
 
   return (
-    <div className="w-full">
+    <div className="w-full py-10">
       <div className="flex gap-5">
-        <div className="w-[50%] aspect-video relative">
+        <div style={{ position: 'relative' }} className="w-1/2 aspect-video">
           {imageUrl && (
-            <Image
-              src={imageUrl}
-              alt={postTitle}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 1200px"
-              className="object-cover object-center"
-              priority
-            />
+            <Link href={`${process.env.NEXTAUTH_URL}/news/${_id}`}>
+              <Image
+                src={imageUrl}
+                alt={postTitle}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 1200px"
+                className="object-cover object-center"
+                priority
+              />
+            </Link>
           )}
         </div>
-        <div className="">
-          {postTitle && <div className={styles.Title}>{postTitle}</div>}
-          {post && <div className={styles.DirectedBy}>{post}</div>}
-          {updatedAt && (
-            <div>
-              <span>updated @ </span>
-              {formattedDate}
-            </div>
-          )}
-          <div>
-            <FacebookShareButton
-              url={`${process.env.NEXTAUTH_URL}/api/news/${_id}`}
-            >
-              <FacebookIcon size={32} round />
-            </FacebookShareButton>
-
-            <TwitterShareButton
-              url={`${process.env.NEXTAUTH_URL}/api/news/${_id}`}
-            >
-              <TwitterIcon size={32} round />
-            </TwitterShareButton>
-            <WhatsappShareButton
-              url={`${process.env.NEXTAUTH_URL}/api/news/${_id}`}
-            >
-              <WhatsappIcon size={32} round />
-            </WhatsappShareButton>
-            <LinkedinShareButton
-              url={`${process.env.NEXTAUTH_URL}/api/news/${_id}`}
-            >
-              <LinkedinIcon size={32} round />
-            </LinkedinShareButton>
+        <div className="w-1/2 flex flex-col justify-between">
+          <Link href={`${process.env.NEXTAUTH_URL}/news/${_id}`}>
+            {postTitle && <div className={styles.NewsTitle}>{postTitle}</div>}
+            {post && (
+              <div className="text-base font-light line-clamp-2">{post}</div>
+            )}
+          </Link>
+          <div className="flex flex-col gap-2">
+            {updatedAt && (
+              <div className="textXs underline pb-2">
+                <span className="">updated @ </span>
+                {formattedDate}
+              </div>
+            )}
+            <ShareSns _id={_id} />
           </div>
         </div>
       </div>

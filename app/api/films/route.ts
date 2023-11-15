@@ -84,7 +84,7 @@ await newFilm.save();
 
 export const GET = async(req:Request) => {
   await connectMongoDB()
-  const films = await Film.find()
+  const films = await Film.find().sort({ updatedAt: -1 })
   const filmsWithCategories = await Promise.all(
     films.map(async (film) => {
       if (film.category) {

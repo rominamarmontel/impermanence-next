@@ -1,5 +1,6 @@
 import Film from '@/components/Film'
 import { TFilm } from '@/types'
+import styles from './styles.module.css'
 
 const getFilms = async (): Promise<TFilm[] | null> => {
   try {
@@ -64,7 +65,7 @@ export default async function Home() {
             />
           ))
         ) : (
-          <div>Loading...</div>
+          <div className="loading">Loading...</div>
         )}
       </div>
     </>

@@ -84,7 +84,7 @@ const DetailsFilm = ({ params }: { params: { id: string } }) => {
             imageData={film.imageData || []}
           />
         ) : (
-          <div>No films to display</div>
+          <div className="loading">Loading...</div>
         )}
       </div>
     </>

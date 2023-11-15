@@ -7,7 +7,7 @@ import { authOptions } from "../auth/[...nextauth]/route";
 
 export const GET = async(req:Request) => {
   await connectMongoDB()
-  const posts = await News.find()
+  const posts = await News.find().sort({ updatedAt: -1 });
   return NextResponse.json(posts)
 }
 

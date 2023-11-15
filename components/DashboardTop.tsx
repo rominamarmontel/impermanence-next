@@ -41,19 +41,25 @@ const DashboardTop = () => {
   }, [])
 
   return (
-    <div>
+    <div className="w-full">
       <h1 className={styles.DashboardTitle}>Dashboard</h1>
       <div className="flex flex-wrap justify-start mt-10">
-        <table className="table-auto w-full">
+        <table className="table-fixed border-collapse border border-green-800 w-full">
           <thead>
             <tr>
-              <th className="px-4 py-2 border-t border-l border-b">Update @</th>
-              <th className="px-4 py-2 border-t border-l border-b">Title</th>
-              <th className="px-4 py-2 border-t border-l border-b">Content</th>
-              <th className="px-4 py-2 border-t border-l border-b border-r"></th>
+              <th className="w-1/10 px-4 py-2 border border-green-600">
+                Update @
+              </th>
+              <th className="w-2/10 px-4 py-2 border border-green-600">
+                Title
+              </th>
+              <th className="w-1/2 px-4 py-2 border border-green-600">
+                Content
+              </th>
+              <th className="w-2/10 px-4 py-2 border border-green-600"></th>
             </tr>
           </thead>
-          <tbody className="w-full">
+          <tbody>
             {posts && posts.length > 0
               ? posts.map((post: TNews) => {
                   const dateObject = new Date(post.updatedAt)
@@ -68,27 +74,29 @@ const DashboardTop = () => {
                   )
 
                   return (
-                    <tr key={post._id}>
-                      <th className="px-4 py-2 text-left border-b border-l border-r">
+                    <tr key={post._id} className="w-full">
+                      <th className="px-4 py-2 text-left border border-green-600">
                         {formattedDate}
                       </th>
-                      <td className="px-4 py-2 text-left border-b border-r">
+                      <td className="px-4 py-2 text-left border border-green-600">
                         {post.postTitle}
                       </td>
-                      <td className="px-4 py-2 border-b border-r">
-                        {post.post}
+                      <td className="textp px-4 py-2 border border-green-600 ">
+                        <div className="line-clamp-2">{post.post}</div>
                       </td>
-                      <td className="px-4 py-2 flex flex-wrap border-b border-r justify-between">
-                        <Link
-                          href={`/edit-news/${post._id}`}
-                          className="text-green-400 cursor-pointer"
-                        >
-                          Edit
-                        </Link>
-                        <DeleteButtonNews
-                          id={post._id || ''}
-                          publicId={post?.publicId}
-                        />
+                      <td className="px-4 py-2 border border-green-600">
+                        <div className="flex flex-wrap justify-around">
+                          <Link
+                            href={`/edit-news/${post._id}`}
+                            className="text-green-400 cursor-pointer"
+                          >
+                            Edit
+                          </Link>
+                          <DeleteButtonNews
+                            id={post._id || ''}
+                            publicId={post?.publicId}
+                          />
+                        </div>
                       </td>
                     </tr>
                   )
@@ -99,39 +107,43 @@ const DashboardTop = () => {
       </div>
 
       <div className="flex flex-wrap justify-start mt-10">
-        <table className="table-auto w-full">
+        <table className="table-fix border-collapse border border-green-800 w-full">
           <thead>
             <tr>
-              <th className="px-4 py-2 border-t border-l border-b">Category</th>
-              <th className="px-4 py-2 border-t border-l border-b">Title</th>
-              <th className="px-4 py-2 border-t border-l border-b">Year</th>
-              <th className="px-4 py-2 border-t border-l border-b border-r"></th>
+              <th className="w-1/10 px-4 py-2 border border-green-600">
+                Category
+              </th>
+              <th className="w-1/2 px-4 py-2 border border-green-600">Title</th>
+              <th className="w-2/10 px-4 py-2 border border-green-600">Year</th>
+              <th className="w-2/10 px-4 py-2 border border-green-600"></th>
             </tr>
           </thead>
-          <tbody className="w-full">
+          <tbody className="">
             {films && films.length > 0
               ? films.map((film: TFilm) => (
                   <tr key={film._id}>
-                    <th className="px-4 py-2 text-left border-b border-l border-r">
+                    <th className="px-4 py-2 text-left border border-green-600">
                       {film.category?.catName || 'Unknown Category'}
                     </th>
-                    <td className="px-4 py-2 text-left border-b border-r">
+                    <td className="px-4 py-2 text-left border border-green-600">
                       {film.title.fr}
                     </td>
-                    <td className="px-4 py-2 border-b border-r">
+                    <td className="px-4 py-2 border border-green-600">
                       {film.createdYear}
                     </td>
-                    <td className="px-4 py-2 flex flex-wrap border-b border-r justify-between">
-                      <Link
-                        href={`/edit-film/${film._id}`}
-                        className="text-green-400 cursor-pointer"
-                      >
-                        Edit
-                      </Link>
-                      <DeleteButton
-                        id={film._id}
-                        publicId={film?.imageData?.[0]?.publicId}
-                      />
+                    <td className="px-4 py-2 border border-green-600 ">
+                      <div className="flex justify-around flex-wrap">
+                        <Link
+                          href={`/edit-film/${film._id}`}
+                          className="text-green-400 cursor-pointer"
+                        >
+                          Edit
+                        </Link>
+                        <DeleteButton
+                          id={film._id}
+                          publicId={film?.imageData?.[0]?.publicId}
+                        />
+                      </div>
                     </td>
                   </tr>
                 ))

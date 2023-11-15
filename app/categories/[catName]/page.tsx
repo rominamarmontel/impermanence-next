@@ -73,7 +73,7 @@ const CategoryFilms = ({ params }: { params: { catName: string } }) => {
           />
         ))
       ) : (
-        <div style={{ padding: 16 }} className="m-auto text-red-400">
+        <div style={{ padding: 16 }} className="loading">
           Loading...
         </div>
       )}
