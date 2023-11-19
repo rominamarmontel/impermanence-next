@@ -173,60 +173,67 @@ const Navbar = () => {
               // <Link className="btn" href={'/login'}>
               //   Login
               // </Link>
-
-              <div className="flex justify-end items-center gap-5">
-                <ul className="flex gap-5 items-center">
-                  <li>
-                    <Link
-                      className={styles.About}
-                      href={isEnglish ? '/en/news' : '/news'}
-                    >
-                      news
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className={styles.About}
-                      href={isEnglish ? '/en/about' : '/about'}
-                    >
-                      à propos
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className={styles.About}
-                      href={isEnglish ? '/en/contact' : '/contact'}
-                    >
-                      contact
-                    </Link>
-                  </li>
-                </ul>
-                <ul className="flex gap-2 items-center">
-                  <li className="text-red-700">
-                    <Link href="https://vimeo.com/user9555000" target="_blank">
-                      <FaVimeo />
-                    </Link>
-                  </li>
-                  <li className="text-red-700">
-                    <Link
-                      href="https://www.linkedin.com/company/impermanence-films/"
-                      target="_blank"
-                    >
-                      <FaLinkedinIn />
-                    </Link>
-                  </li>
-                  <li>
-                    <button onClick={handleLanguageChange} className="btn">
-                      {isEnglish ? ' French' : 'English'}
-                    </button>
-                  </li>
-                </ul>
-              </div>
+              <>
+                <div className="mt-0 grid place-content-center">
+                  <CategoriesList />
+                </div>
+                <div className="flex justify-end items-center gap-5">
+                  <ul className="flex gap-5 items-center">
+                    <li>
+                      <Link
+                        className={styles.About}
+                        href={isEnglish ? '/en/news' : '/news'}
+                      >
+                        news
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className={styles.About}
+                        href={isEnglish ? '/en/about' : '/about'}
+                      >
+                        à propos
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className={styles.About}
+                        href={isEnglish ? '/en/contact' : '/contact'}
+                      >
+                        contact
+                      </Link>
+                    </li>
+                  </ul>
+                  <ul className="flex gap-2 items-center">
+                    <li className="text-red-700">
+                      <Link
+                        href="https://vimeo.com/user9555000"
+                        target="_blank"
+                      >
+                        <FaVimeo />
+                      </Link>
+                    </li>
+                    <li className="text-red-700">
+                      <Link
+                        href="https://www.linkedin.com/company/impermanence-films/"
+                        target="_blank"
+                      >
+                        <FaLinkedinIn />
+                      </Link>
+                    </li>
+                    <li>
+                      <button onClick={handleLanguageChange} className="btn">
+                        {isEnglish ? ' French' : 'English'}
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </>
             )}
           </div>
-          <div className="mt-0 grid place-content-center">
+          {/* <div className="mt-0 grid place-content-center">
             <CategoriesList />
-          </div>
+          </div> */}
         </div>
       )}
     </>
