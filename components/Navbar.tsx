@@ -4,12 +4,14 @@ import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import styles from './styles.module.css'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import CategoriesList from './CategoriesList'
 import imageAccount from '@/public/images/computer-icons-google-account-icon-design-login-png-favpng-jFjxPac6saRuDE3LiyqsYTEZM.jpg'
 import HambergerMenu from './HambergerMenu '
 import './Navbar.css'
 import { FaVimeo, FaLinkedinIn } from 'react-icons/fa'
+import { usePathname, useSearchParams, useRouter } from 'next/navigation'
+import { useLanguage } from '@/app/LanguageContext'
 
 const Navbar = () => {
   const { status, data: session } = useSession()
@@ -26,6 +28,20 @@ const Navbar = () => {
   const closeHambergerMenu = () => {
     setOpen(false)
     setIsActive(!isActive)
+  }
+
+  const router = useRouter()
+  const pathname = usePathname()
+  const { isEnglish, toggleLanguage } = useLanguage()
+
+  const handleLanguageChange = async () => {
+    toggleLanguage()
+
+    const currentPath = pathname
+    const newPath = isEnglish
+      ? `/en${currentPath}`
+      : currentPath.replace('/en', '')
+    await router.replace(newPath)
   }
 
   useEffect(() => {
@@ -59,7 +75,7 @@ const Navbar = () => {
     <>
       {windowWidth !== undefined && windowWidth <= 992 ? (
         <div className={styles.HeaderMenu}>
-          <Link href={'/'}>
+          <Link href={isEnglish ? '/en' : '/'}>
             <h1 className={styles.NavbarTitleSmall}>
               impermanence
               <br />
@@ -84,7 +100,7 @@ const Navbar = () => {
       ) : (
         <div className={styles.Navbar}>
           <div className="flex justify-between items-center">
-            <Link href={'/'}>
+            <Link href={isEnglish ? '/en' : '/'}>
               <h1 className={styles.NavbarTitle}>
                 impermanence
                 <br />
@@ -157,45 +173,55 @@ const Navbar = () => {
               // <Link className="btn" href={'/login'}>
               //   Login
               // </Link>
-              <>
-                <div className="flex justify-end items-center gap-5">
-                  <ul className="flex gap-5 items-center">
-                    <li>
-                      <Link className={styles.About} href={'/news'}>
-                        news
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className={styles.About} href={'/about'}>
-                        à propos
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className={styles.About} href={'/contact'}>
-                        contact
-                      </Link>
-                    </li>
-                  </ul>
-                  <ul className="flex gap-2">
-                    <li className="text-red-700">
-                      <Link
-                        href="https://vimeo.com/user9555000"
-                        target="_blank"
-                      >
-                        <FaVimeo />
-                      </Link>
-                    </li>
-                    <li className="text-red-700">
-                      <Link
-                        href="https://www.linkedin.com/company/impermanence-films/"
-                        target="_blank"
-                      >
-                        <FaLinkedinIn />
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </>
+
+              <div className="flex justify-end items-center gap-5">
+                <ul className="flex gap-5 items-center">
+                  <li>
+                    <Link
+                      className={styles.About}
+                      href={isEnglish ? '/en/news' : '/news'}
+                    >
+                      news
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={styles.About}
+                      href={isEnglish ? '/en/about' : '/about'}
+                    >
+                      à propos
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={styles.About}
+                      href={isEnglish ? '/en/contact' : '/contact'}
+                    >
+                      contact
+                    </Link>
+                  </li>
+                </ul>
+                <ul className="flex gap-2 items-center">
+                  <li className="text-red-700">
+                    <Link href="https://vimeo.com/user9555000" target="_blank">
+                      <FaVimeo />
+                    </Link>
+                  </li>
+                  <li className="text-red-700">
+                    <Link
+                      href="https://www.linkedin.com/company/impermanence-films/"
+                      target="_blank"
+                    >
+                      <FaLinkedinIn />
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLanguageChange} className="btn">
+                      {isEnglish ? ' French' : 'English'}
+                    </button>
+                  </li>
+                </ul>
+              </div>
             )}
           </div>
           <div className="mt-0 grid place-content-center">

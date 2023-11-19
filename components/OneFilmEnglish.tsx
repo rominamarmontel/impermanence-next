@@ -3,8 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import styles from './styles.module.css'
+import { useLanguage } from '@/app/LanguageContext'
 
-const OneFilm = ({
+const OneFilmEnglish = ({
   _id,
   title,
   originalTitle,
@@ -39,6 +40,21 @@ const OneFilm = ({
     setShowDownload(!showDownload)
   }
 
+  const { isEnglish } = useLanguage()
+  const getCategoryDisplayName = (catName: string) => {
+    return isEnglish && catName === 'en cours' ? 'in progress' : catName
+  }
+
+  const getGenreDisplayName = (genre: string) => {
+    const genreTranslate: { [key: string]: string } = {
+      documentaire: 'documentary',
+      commedie: 'comedy',
+      drame: 'drama',
+    }
+
+    return isEnglish ? genreTranslate[genre] || genre : genre
+  }
+
   return (
     <div className="w-full h-full">
       <div className="xl:flex gap-12">
@@ -65,18 +81,18 @@ const OneFilm = ({
         <div className="xl:w-1/3">
           {title && (
             <div className="flex flex-col items-left text-2xl mt-5">
-              <strong>{title.fr}</strong>
+              <strong>{title.en}</strong>
             </div>
           )}
           {category && (
             <div className="font-bold text-red-700 italic text-sm">
-              {category.catName.toUpperCase()}
+              {getCategoryDisplayName(category.catName).toUpperCase()}
             </div>
           )}
           {createdYear && <div className="font-bold">{createdYear}</div>}
           {synopsis && (
             <div className="flex flex-col items-left text-sm my-5">
-              <div className="textp">{synopsis.fr}</div>
+              <div className="textp">{synopsis.en}</div>
             </div>
           )}
         </div>
@@ -84,13 +100,13 @@ const OneFilm = ({
 
       {originalTitle && (
         <div className="flex flex-col items-left text-sm my-5">
-          <strong>TITLE ORIGINAL</strong>
+          <strong>ORIGINAL TITLE</strong>
           <div className="textp">{originalTitle}</div>
         </div>
       )}
       {directedBy && (
         <div className="flex flex-col items-left text-sm my-5">
-          <strong>RÉALISATION</strong>
+          <strong>DIRECTED BY</strong>
           {directedBy.split('\n').map((line, index) => (
             <div key={index} className="textp">
               {line}
@@ -100,7 +116,7 @@ const OneFilm = ({
       )}
       {producedBy && (
         <div className="flex flex-col items-left text-sm my-5">
-          <strong>PRODUCTION</strong>
+          <strong>PRODUCED BY</strong>
           {producedBy.split('\n').map((line, index) => (
             <div key={index} className="textp">
               {line}
@@ -111,7 +127,7 @@ const OneFilm = ({
       {author && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>
-            {author && author.includes('\n') ? 'AUTEUR(E)S' : 'AUTEUR(E)'}
+            {author && author.includes('\n') ? 'AUTHORS' : 'AUTHOR'}
           </strong>
           {author.split('\n').map((line, index) => (
             <div key={index} className="textp">
@@ -128,7 +144,7 @@ const OneFilm = ({
       )}
       {duration && (
         <div className="flex flex-col items-left text-sm my-5">
-          <strong>DUREE</strong>
+          <strong>DURATION</strong>
           <div className="textp">{duration}</div>
         </div>
       )}
@@ -136,7 +152,7 @@ const OneFilm = ({
       {partner && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>
-            {partner && partner.includes('\n') ? 'PARTENAIRES' : 'PARTENAIRE'}
+            {partner && partner.includes('\n') ? 'PARTNERS' : 'PARTNER'}
           </strong>
           {partner.split('\n').map((line, index) => (
             <div key={index} className="textp">
@@ -147,7 +163,7 @@ const OneFilm = ({
       )}
       {festivalsAndAwards && (
         <div className="flex flex-col items-left text-sm my-5">
-          <strong>FESTIVALS & RÉCOMPENSES</strong>
+          <strong>FESTIVALS & AWARDS</strong>
           {festivalsAndAwards.split('\n').map((line, index) => (
             <div key={index} className="textp">
               {line}
@@ -163,7 +179,7 @@ const OneFilm = ({
       )}
       {internationalSales && (
         <div className="flex flex-col items-left text-sm my-5">
-          <strong>VENTES INTERNATIONALES</strong>
+          <strong>INTERNATIONAL SALES</strong>
           {internationalSales.split('\n').map((line, index) => (
             <div key={index} className="textp">
               {line}
@@ -173,14 +189,14 @@ const OneFilm = ({
       )}
       {stageOfProduction && (
         <div className="flex flex-col items-left text-sm my-5">
-          <strong>ÉTAPE DE PRODUCTION</strong>
+          <strong>STAGE OF PRODUCTION</strong>
           <div className="textp">{stageOfProduction}</div>
         </div>
       )}
       {genre && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>GENRE</strong>
-          <div className="textp">{genre}</div>
+          <div className="textp">{getGenreDisplayName(genre)}</div>
         </div>
       )}
       {crew && (
@@ -198,11 +214,7 @@ const OneFilm = ({
         {links && links.length > 0 && (
           <div>
             <button onClick={handleClickVideoOnDemand}>
-              <strong className="flex items-left">
-                {showVideoOnDemand
-                  ? 'VIDEO À LA DEMANDE'
-                  : 'VIDEO À LA DEMANDE +'}
-              </strong>
+              <strong className="flex items-left">VIDEO ON DEMAND</strong>
             </button>
 
             <div>
@@ -230,7 +242,7 @@ const OneFilm = ({
           <div>
             <button onClick={handleClickDownload}>
               <strong className="flex items-left">
-                {showDownload ? 'TÉLÉCHARGEMENT' : 'TÉLÉCHARGEMENT +'}
+                {showDownload ? 'DOWNLOADS' : 'DOWNLOAD +'}
               </strong>
             </button>
 
@@ -252,4 +264,4 @@ const OneFilm = ({
   )
 }
 
-export default OneFilm
+export default OneFilmEnglish

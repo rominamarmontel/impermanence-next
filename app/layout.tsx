@@ -6,6 +6,9 @@ import Footer from '@/components/Footer'
 import { AuthProvider } from '@/app/Providers'
 import { Toaster } from 'react-hot-toast'
 import styles from './styles.module.css'
+// import { NavigationEvents } from '@/components/NavigationEvents'
+import { Suspense } from 'react'
+import { LanguageProvider } from '@/app/LanguageContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,10 +27,15 @@ export default function RootLayout({
     <html lang="fr">
       <body suppressHydrationWarning={true}>
         <AuthProvider>
-          <div className="lg:max-w-[100%] lg:px-16 mx-auto py-8 min-h-screen flex flex-col px-4">
-            <Navbar />
-            <div className={styles.Children}>{children}</div>
-          </div>
+          <LanguageProvider>
+            <div className="lg:max-w-[100%] lg:px-16 mx-auto py-8 min-h-screen flex flex-col px-4">
+              <Navbar />
+              <div className={styles.Children}>{children}</div>
+            </div>
+          </LanguageProvider>
+          {/* <Suspense fallback={null}>
+            <NavigationEvents />
+          </Suspense> */}
           <Footer />
           <Toaster />
         </AuthProvider>

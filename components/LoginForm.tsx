@@ -44,6 +44,7 @@ const LoginForm = () => {
               onChange={(e) => setEmail(e.target.value)}
               type="text"
               placeholder="Email"
+              autoComplete="email"
             />
             <input
               onChange={(e) => setPassword(e.target.value)}
