@@ -1,6 +1,6 @@
 'use client'
 
-import { FilmEnglish } from '@/components/FilmEnglish'
+import FilmEnglish from '@/components/FilmEnglish'
 import { TFilm } from '@/types'
 import { useEffect, useState } from 'react'
 
