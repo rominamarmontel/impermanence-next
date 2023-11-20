@@ -21,7 +21,7 @@ const fetchFilms = async (): Promise<TFilm[] | null> => {
   return null
 }
 
-const HomeEnglish: React.FC = () => {
+const HomeEnglish = () => {
   const [films, setFilms] = useState<TFilm[] | null>(null)
 
   useEffect(() => {
