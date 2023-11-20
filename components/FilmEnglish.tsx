@@ -54,5 +54,5 @@ const FilmEnglish = ({
     </div>
   )
 }
-FilmEnglish.displayName = 'FilmEnglish'
+
 export default FilmEnglish
