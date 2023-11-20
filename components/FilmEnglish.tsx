@@ -54,5 +54,5 @@ const FilmEnglish: React.FC<TFilm> = ({
     </div>
   )
 }
-
+FilmEnglish.displayName = 'FilmEnglish'
 export default FilmEnglish
