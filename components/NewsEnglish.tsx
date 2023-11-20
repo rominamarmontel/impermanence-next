@@ -56,5 +56,5 @@ const NewsEnglish = ({ _id, postTitle, post, imageUrl, updatedAt }: TNews) => {
     </div>
   )
 }
-
+NewsEnglish.displayName = 'NewsEnglish'
 export default NewsEnglish
