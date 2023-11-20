@@ -80,5 +80,5 @@ const CategoryFilmsEnglish = ({ params }: { params: { catName: string } }) => {
     </div>
   )
 }
-
+CategoryFilmsEnglish.displayName = 'CategoryFilmsEnglish'
 export default CategoryFilmsEnglish
