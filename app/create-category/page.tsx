@@ -1,5 +1,3 @@
-'use client'
-
 import CreateCategoryForm from '@/components/CreateCategoryForm'
 
 const CreateCategory = () => {
