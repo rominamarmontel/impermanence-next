@@ -44,13 +44,11 @@ const LoginForm = () => {
               onChange={(e) => setEmail(e.target.value)}
               type="text"
               placeholder="Email"
-              autoComplete="email"
             />
             <input
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="password"
-              autoComplete="current-password"
             />
             <button className="bg-green-300 text-white font-bold cursor-pointer px-6 py-2">
               Login
