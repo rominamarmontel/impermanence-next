@@ -26,9 +26,15 @@ export type TFilm = {
     en: string
     fr: string
   }
-  partner?: string
+  partner?: {
+    en: string
+    fr: string
+  }
   genre?: string
-  festivalsAndAwards?: string
+  festivalAndAward?: {
+    en: string
+    fr: string
+  }
   internationalSales?: string,
   stageOfProduction?: string,
   distribution?: string

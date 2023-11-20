@@ -4,13 +4,13 @@ import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import styles from './styles.module.css'
 import Image from 'next/image'
-import { MouseEventHandler, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CategoriesList from './CategoriesList'
 import imageAccount from '@/public/images/computer-icons-google-account-icon-design-login-png-favpng-jFjxPac6saRuDE3LiyqsYTEZM.jpg'
 import HambergerMenu from './HambergerMenu '
 import './Navbar.css'
 import { FaVimeo, FaLinkedinIn } from 'react-icons/fa'
-import { usePathname, useSearchParams, useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useLanguage } from '@/app/LanguageContext'
 
 const Navbar = () => {
@@ -131,6 +131,13 @@ const Navbar = () => {
                     href={'/create-film'}
                   >
                     Create Film
+                  </Link>
+                  <Link
+                    onClick={() => setIsPopupVisible(false)}
+                    className="hover:underline"
+                    href={'/create-news'}
+                  >
+                    Create News
                   </Link>
                   <button onClick={() => signOut()} className="btn">
                     Sign Out

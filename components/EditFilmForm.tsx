@@ -11,7 +11,6 @@ import { toast } from 'react-hot-toast'
 import styles from './styles.module.css'
 
 const EditFilmForm = ({ film }: { film: TFilm }) => {
-  console.log(film)
   const [titles, setTitles] = useState<{ en: string; fr: string }>({
     en: '',
     fr: '',
@@ -29,9 +28,18 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
     en: '',
     fr: '',
   })
-  const [partner, setPartner] = useState('')
+  const [partners, setPartners] = useState<{ en: string; fr: string }>({
+    en: '',
+    fr: '',
+  })
   const [createdYear, setCreatedYear] = useState('')
-  const [festivalsAndAwards, setFestivalsAndAwards] = useState('')
+  const [festivalsAndAwards, setFestivalsAndAwards] = useState<{
+    en: string
+    fr: string
+  }>({
+    en: '',
+    fr: '',
+  })
   const [distribution, setDistribution] = useState('')
   const [internationalSales, setInternationalSales] = useState('')
   const [stageOfProduction, setStageOfProduction] = useState('')
@@ -70,9 +78,17 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
       } else {
         setSynopses(film.synopsis || { en: '', fr: '' })
       }
-      setPartner(film.partner || '')
+      if (typeof film.partner === 'string') {
+        setPartners({ en: '', fr: '' })
+      } else {
+        setPartners(film.partner || { en: '', fr: '' })
+      }
       setCreatedYear(film.createdYear)
-      setFestivalsAndAwards(film.festivalsAndAwards || '')
+      if (typeof film.festivalAndAward === 'string') {
+        setFestivalsAndAwards({ en: '', fr: '' })
+      } else {
+        setFestivalsAndAwards(film.festivalAndAward || { en: '', fr: '' })
+      }
       setDistribution(film.distribution || '')
       setInternationalSales(film.internationalSales || '')
       setStageOfProduction(film.stageOfProduction || '')
@@ -96,7 +112,7 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
     film.synopsis,
     film.partner,
     film.createdYear,
-    film.festivalsAndAwards,
+    film.festivalAndAward,
     film.distribution,
     film.internationalSales,
     film.stageOfProduction,
@@ -138,7 +154,7 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ publicId: imageData[index].publicId }),
+        body: JSON.stringify({ publicIds: [imageData[index].publicId] }),
       })
       if (res.ok) {
         setImageData((prev) => prev.filter((_, i) => i !== index))
@@ -175,9 +191,9 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
             format,
             duration,
             synopsis: synopses,
-            partner,
+            partner: partners,
             createdYear,
-            festivalsAndAwards,
+            festivalAndAward: festivalsAndAwards,
             distribution,
             internationalSales,
             stageOfProduction,
@@ -203,7 +219,23 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
   return (
     <div className={styles.FormEdit}>
       <div className={styles.FormContent}>
-        <div>
+        <div className="flex flex-col gap-5">
+          <Link href={'/dashboard'}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+              />
+            </svg>
+          </Link>
           <h1 className={styles.FormTitle}>Edit film</h1>
         </div>
         <p className="text-right text-red-400">
@@ -301,8 +333,8 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
           <div className="md:flex md:gap-2">
             <textarea
               onChange={(e) =>
-                setSynopses((prevTitles) => ({
-                  ...prevTitles,
+                setSynopses((prevSynopses) => ({
+                  ...prevSynopses,
                   en: e.target.value,
                 }))
               }
@@ -312,8 +344,8 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
             />
             <textarea
               onChange={(e) =>
-                setSynopses((prevTitles) => ({
-                  ...prevTitles,
+                setSynopses((prevSynopses) => ({
+                  ...prevSynopses,
                   fr: e.target.value,
                 }))
               }
@@ -322,17 +354,55 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
               className="md:flex-1 w-[100%] border border-red-400"
             />
           </div>
+          <div className="md:flex md:gap-2">
+            <textarea
+              onChange={(e) =>
+                setPartners((prevPartners) => ({
+                  ...prevPartners,
+                  en: e.target.value,
+                }))
+              }
+              placeholder="Partner (English)"
+              value={partners.en || ''}
+              className="md:flex-1 w-[100%] border"
+            />
+            <textarea
+              onChange={(e) =>
+                setPartners((prevPartners) => ({
+                  ...prevPartners,
+                  fr: e.target.value,
+                }))
+              }
+              placeholder="Partner (French)"
+              value={partners.fr || ''}
+              className="md:flex-1 w-[100%] border"
+            />
+          </div>
 
-          <textarea
-            onChange={(e) => setPartner(e.target.value)}
-            placeholder="Partner"
-            value={partner || ''}
-          />
-          <textarea
-            onChange={(e) => setFestivalsAndAwards(e.target.value)}
-            placeholder="Festivals & Awards"
-            value={festivalsAndAwards || ''}
-          />
+          <div className="md:flex md:gap-2">
+            <textarea
+              onChange={(e) =>
+                setFestivalsAndAwards((prevFestivalsAndAwards) => ({
+                  ...prevFestivalsAndAwards,
+                  en: e.target.value,
+                }))
+              }
+              placeholder="Partner (English)"
+              value={partners.en || ''}
+              className="md:flex-1 w-[100%] border"
+            />
+            <textarea
+              onChange={(e) =>
+                setFestivalsAndAwards((prevFestivalsAndAwards) => ({
+                  ...prevFestivalsAndAwards,
+                  fr: e.target.value,
+                }))
+              }
+              placeholder="Partner (French)"
+              value={partners.fr || ''}
+              className="md:flex-1 w-[100%] border"
+            />
+          </div>
           <input
             onChange={(e) => setDistribution(e.target.value)}
             type="text"
@@ -469,7 +539,7 @@ const EditFilmForm = ({ film }: { film: TFilm }) => {
                 style={{ display: 'inline-block' }}
               >
                 <Image
-                  src={imageUrl}
+                  src={image.url}
                   alt={originalTitle}
                   width={150}
                   height={150}

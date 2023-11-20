@@ -18,7 +18,7 @@ const OneFilmEnglish = ({
   synopsis,
   partner,
   createdYear,
-  festivalsAndAwards,
+  festivalAndAward,
   distribution,
   internationalSales,
   stageOfProduction,
@@ -152,19 +152,19 @@ const OneFilmEnglish = ({
       {partner && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>
-            {partner && partner.includes('\n') ? 'PARTNERS' : 'PARTNER'}
+            {partner.en && partner.en.includes('\n') ? 'PARTNERS' : 'PARTNER'}
           </strong>
-          {partner.split('\n').map((line, index) => (
+          {partner.en.split('\n').map((line, index) => (
             <div key={index} className="textp">
               {line}
             </div>
           ))}
         </div>
       )}
-      {festivalsAndAwards && (
+      {festivalAndAward && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>FESTIVALS & AWARDS</strong>
-          {festivalsAndAwards.split('\n').map((line, index) => (
+          {festivalAndAward.en.split('\n').map((line, index) => (
             <div key={index} className="textp">
               {line}
             </div>

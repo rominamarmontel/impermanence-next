@@ -8,18 +8,18 @@ export const DeleteButtonNews = ({
   publicId,
 }: {
   id: string
-  publicId?: string
+  publicId: string
 }) => {
   const router = useRouter()
-
-  const deleteImage = async (publicIds: string[]) => {
+  const deleteImage = async (publicId: string) => {
     try {
+      console.log('Received publicId:', publicId)
       const res = await fetch('api/removeImage', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ publicIds }),
+        body: JSON.stringify({ publicId }),
       })
       if (res.ok) {
         console.log('Image deleted from Cloudinary')
@@ -41,7 +41,6 @@ export const DeleteButtonNews = ({
           },
         })
         if (res.ok) {
-          console.log('Post deleted')
           const post = await res.json()
           const { publicId } = post
           await deleteImage(publicId)

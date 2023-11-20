@@ -7,6 +7,7 @@ import styles from './styles.module.css'
 import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { TNews } from '@/types'
+import Link from 'next/link'
 
 const EditNewsForm = ({ news }: { news: TNews }) => {
   const [postTitle, setPostTitle] = useState('')
@@ -38,7 +39,7 @@ const EditNewsForm = ({ news }: { news: TNews }) => {
   async function removeImage(e: React.FormEvent) {
     e.preventDefault()
     try {
-      const res = await fetch('api/removeImage', {
+      const res = await fetch('/api/removeImageNews', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +92,25 @@ const EditNewsForm = ({ news }: { news: TNews }) => {
   return (
     <div className={styles.Form}>
       <div className={styles.FormContent}>
-        <h1 className={styles.FormTitle}>Edit News</h1>
+        <div className="flex flex-col gap-5">
+          <Link href={'/dashboard'}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+              />
+            </svg>
+          </Link>
+          <h1 className={styles.FormTitle}>Edit News</h1>
+        </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 ">
           <input
             type="text"

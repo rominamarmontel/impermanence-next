@@ -17,7 +17,7 @@ const OneFilm = ({
   synopsis,
   partner,
   createdYear,
-  festivalsAndAwards,
+  festivalAndAward,
   distribution,
   internationalSales,
   stageOfProduction,
@@ -136,19 +136,21 @@ const OneFilm = ({
       {partner && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>
-            {partner && partner.includes('\n') ? 'PARTENAIRES' : 'PARTENAIRE'}
+            {partner.fr && partner.fr.includes('\n')
+              ? 'PARTENAIRES'
+              : 'PARTENAIRE'}
           </strong>
-          {partner.split('\n').map((line, index) => (
+          {partner.fr.split('\n').map((line, index) => (
             <div key={index} className="textp">
               {line}
             </div>
           ))}
         </div>
       )}
-      {festivalsAndAwards && (
+      {festivalAndAward && (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>FESTIVALS & RÉCOMPENSES</strong>
-          {festivalsAndAwards.split('\n').map((line, index) => (
+          {festivalAndAward.fr.split('\n').map((line, index) => (
             <div key={index} className="textp">
               {line}
             </div>

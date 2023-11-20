@@ -94,7 +94,7 @@ const DashboardTop = () => {
                           </Link>
                           <DeleteButtonNews
                             id={post._id || ''}
-                            publicId={post?.publicId}
+                            publicId={post?.publicId || ''}
                           />
                         </div>
                       </td>

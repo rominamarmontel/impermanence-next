@@ -6,8 +6,6 @@ import Footer from '@/components/Footer'
 import { AuthProvider } from '@/app/Providers'
 import { Toaster } from 'react-hot-toast'
 import styles from './styles.module.css'
-// import { NavigationEvents } from '@/components/NavigationEvents'
-import { Suspense } from 'react'
 import { LanguageProvider } from '@/app/LanguageContext'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -33,9 +31,6 @@ export default function RootLayout({
               <div className={styles.Children}>{children}</div>
             </div>
           </LanguageProvider>
-          {/* <Suspense fallback={null}>
-            <NavigationEvents />
-          </Suspense> */}
           <Footer />
           <Toaster />
         </AuthProvider>

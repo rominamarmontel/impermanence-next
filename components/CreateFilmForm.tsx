@@ -28,9 +28,18 @@ const CreateFilmForm = () => {
     en: '',
     fr: '',
   })
-  const [partner, setPartner] = useState('')
+  const [partners, setPartners] = useState<{ en: string; fr: string }>({
+    en: '',
+    fr: '',
+  })
   const [createdYear, setCreatedYear] = useState('')
-  const [festivalsAndAwards, setFestivalsAndAwards] = useState('')
+  const [festivalsAndAwards, setFestivalsAndAwards] = useState<{
+    en: string
+    fr: string
+  }>({
+    en: '',
+    fr: '',
+  })
   const [distribution, setDistribution] = useState('')
   const [internationalSales, setInternationalSales] = useState('')
   const [stageOfProduction, setStageOfProduction] = useState('')
@@ -90,7 +99,7 @@ const CreateFilmForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ publicId: imageData[index].publicId }),
+        body: JSON.stringify({ publicIds: [imageData[index].publicId] }),
       })
       if (res.ok) {
         setImageData((prev) => prev.filter((_, i) => i !== index))
@@ -110,6 +119,8 @@ const CreateFilmForm = () => {
 
     const titleString = JSON.stringify(titles)
     const synopsesString = JSON.stringify(synopses)
+    const partnersString = JSON.stringify(partners)
+    const festivalsAndAwardsString = JSON.stringify(festivalsAndAwards)
 
     try {
       const res = await fetch('api/films/', {
@@ -128,9 +139,9 @@ const CreateFilmForm = () => {
           format,
           duration,
           synopsis: synopsesString,
-          partner,
+          partner: partnersString,
           createdYear,
-          festivalsAndAwards,
+          festivalAndAward: festivalsAndAwardsString,
           distribution,
           internationalSales,
           stageOfProduction,
@@ -142,6 +153,7 @@ const CreateFilmForm = () => {
         }),
       })
       if (res.ok) {
+        console.log(res)
         router.push('/dashboard')
       }
     } catch (error) {
@@ -150,16 +162,32 @@ const CreateFilmForm = () => {
   }
   const handleTitleChangeEn = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitles({ ...titles, en: e.target.value })
-    console.log(titles)
   }
   const handleTitleChangeFr = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitles({ ...titles, fr: e.target.value })
-    console.log(titles)
   }
+
   return (
     <div className={styles.Form}>
       <div className={styles.FormContent}>
-        <div className="">
+        <div className="flex flex-col gap-5">
+          <Link href={'/dashboard'}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+              />
+            </svg>
+          </Link>
+
           <h1 className={styles.FormTitle}>Create New film</h1>
         </div>
         <p className="text-right text-red-400">
@@ -231,6 +259,7 @@ const CreateFilmForm = () => {
             type="text"
             placeholder="Created Year"
           />
+
           <div className="md:flex md:gap-2">
             <textarea
               onChange={(e) => setSynopses({ ...synopses, en: e.target.value })}
@@ -243,14 +272,37 @@ const CreateFilmForm = () => {
               className="md:flex-1 w-[100%] border border-red-400 "
             />
           </div>
-          <textarea
-            onChange={(e) => setPartner(e.target.value)}
-            placeholder="Partner"
-          />
-          <textarea
-            onChange={(e) => setFestivalsAndAwards(e.target.value)}
-            placeholder="Festivals & Awards"
-          />
+          <div className="md:flex md:gap-2">
+            <textarea
+              onChange={(e) => setPartners({ ...partners, en: e.target.value })}
+              placeholder="Partner (English)"
+            />
+            <textarea
+              onChange={(e) => setPartners({ ...partners, fr: e.target.value })}
+              placeholder="Partner (French)"
+            />
+          </div>
+          <div className="md:flex md:gap-2">
+            <textarea
+              onChange={(e) =>
+                setFestivalsAndAwards({
+                  ...festivalsAndAwards,
+                  en: e.target.value,
+                })
+              }
+              placeholder="Festivals & Awards (English)"
+            />
+            <textarea
+              onChange={(e) =>
+                setFestivalsAndAwards({
+                  ...festivalsAndAwards,
+                  fr: e.target.value,
+                })
+              }
+              placeholder="Festivals & Awards (French)"
+            />
+          </div>
+
           <input
             onChange={(e) => setDistribution(e.target.value)}
             type="text"

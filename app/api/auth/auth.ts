@@ -1,11 +1,3 @@
-// import NextAuth from "next-auth/next";
-// import CredentialsProvider from "next-auth/providers/credentials";
-// import { AuthOptions } from "next-auth";
-// import { connectMongoDB } from "@/lib/mongodb";
-// import User from "@/models/user";
-// import bcrypt from 'bcryptjs'
-
-import NextAuth from "next-auth/next"
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { AuthOptions } from "next-auth"
 import { connectMongoDB } from "@/lib/mongodb"

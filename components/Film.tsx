@@ -12,15 +12,6 @@ const Film = ({
   imageData,
   originalTitle,
 }: TFilm) => {
-  // const { isEnglish } = useLanguage()
-  // if (isEnglish) {
-  //   return (
-  //     <div>
-  //       <h2>Movies in English</h2>
-  //       <p>{title.en}</p>
-  //     </div>
-  //   )
-  // }
   return (
     <div className="lg:w-[32%] md:w-[49%] sm:w-full">
       <Link href={`${process.env.NEXTAUTH_URL}/film/${_id}`}>

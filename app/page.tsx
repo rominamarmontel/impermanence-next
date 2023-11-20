@@ -56,7 +56,7 @@ export default async function Home() {
                 partner={film.partner}
                 genre={film.genre}
                 createdYear={film.createdYear}
-                festivalsAndAwards={film.festivalsAndAwards}
+                festivalAndAward={film.festivalAndAward}
                 internationalSales={film.internationalSales}
                 stageOfProduction={film.stageOfProduction}
                 distribution={film.distribution}

@@ -17,9 +17,15 @@ const filmSchema = new Schema(
       en: String,
       fr: String,
     },
-    partner: String,
+    partner: {
+      en: String,
+      fr: String,
+    },
     createdYear: String,
-    festivalsAndAwards: String,
+    festivalAndAward: {
+      en: String,
+      fr: String,
+    },
     distribution: String,
     internationalSales: String,
     stageOfProduction: String,

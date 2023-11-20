@@ -29,10 +29,10 @@ export const POST = async (req:Request) => {
     format,
     duration,
     synopsis,
+    distribution,
     partner,
     createdYear,
-    festivalsAndAwards,
-    distribution,
+    festivalAndAward,
     internationalSales,
     stageOfProduction,
     genre,
@@ -42,9 +42,11 @@ export const POST = async (req:Request) => {
     links,
     imageData,
 } = await req.json()
+
 const parsedTitle = JSON.parse(title);
 const parsedSynopsis = JSON.parse(synopsis);
-
+const parsedPartner = JSON.parse(partner)
+const parsedFestivalAndAward = JSON.parse(festivalAndAward)
 
 const categoryId = await findCategoryIdByCatName(catName)
 await connectMongoDB()
@@ -64,9 +66,15 @@ const newFilm = await Film.create({
     en: parsedSynopsis.en,
     fr: parsedSynopsis.fr,
   },
-  partner,
+  partner: {
+    en: parsedPartner.en,
+    fr: parsedPartner.fr,
+  },
   createdYear,
-  festivalsAndAwards,
+  festivalAndAward: {
+    en: parsedFestivalAndAward.en,
+    fr: parsedFestivalAndAward.fr,
+  },
   distribution,
   internationalSales,
   stageOfProduction,
@@ -78,7 +86,7 @@ const newFilm = await Film.create({
   imageData,
 })
 await newFilm.save();
-  return NextResponse.json({response: newFilm})
+  return NextResponse.json({res: newFilm})
 }
 
 
