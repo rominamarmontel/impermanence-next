@@ -5,7 +5,7 @@ import styles from './styles.module.css'
 import { useLanguage } from '@/app/LanguageContext'
 import React from 'react'
 
-const FilmEnglish = ({
+const FilmEnglish: React.FC<TFilm> = ({
   _id,
   category,
   title,
