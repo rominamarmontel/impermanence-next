@@ -2,7 +2,7 @@ import { connectMongoDB } from "@/lib/mongodb"
 import News from "@/models/news"
 import { NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/auth";
 
 
 export const GET = async(req:Request) => {

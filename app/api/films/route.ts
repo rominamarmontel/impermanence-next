@@ -3,7 +3,7 @@ import Category from "@/models/category";
 import Film from "@/models/film"
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server"
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/auth";
 
 async function findCategoryIdByCatName(catName:string) {
   const category = await Category.findOne({ catName })

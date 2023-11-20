@@ -2,7 +2,7 @@ import { connectMongoDB } from '@/lib/mongodb';
 import Category from '@/models/category';
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server"
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/auth";
 
 export const POST = async (req: Request) => {
   const session = await getServerSession(authOptions)

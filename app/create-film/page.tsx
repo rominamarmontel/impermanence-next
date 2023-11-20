@@ -1,6 +1,6 @@
 import CreateFilmForm from '@/components/CreateFilmForm'
 import { getServerSession } from 'next-auth/next'
-import { authOptions } from '../api/auth/[...nextauth]/route'
+import { authOptions } from '../api/auth/auth'
 import { redirect } from 'next/navigation'
 
 const CreateFilm = async () => {

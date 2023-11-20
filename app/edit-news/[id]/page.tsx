@@ -1,7 +1,7 @@
 import EditNewsForm from '@/components/EditNewsForm'
 import { TNews } from '@/types'
 import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { authOptions } from '@/app/api/auth/auth'
 import { redirect } from 'next/navigation'
 
 const getPostById = async (id: string): Promise<TNews | null> => {

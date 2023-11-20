@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "../../auth/[...nextauth]/route"
+import { authOptions } from "../../auth/auth"
 import { NextResponse } from "next/server"
 import { connectMongoDB } from "@/lib/mongodb"
 import News from "@/models/news"

@@ -1,7 +1,7 @@
 import EditFilmForm from '@/components/EditFilmForm'
 import { TFilm } from '@/types'
 import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { authOptions } from '@/app/api/auth/auth'
 import { redirect } from 'next/navigation'
 
 const getFilmById = async (id: string): Promise<TFilm | null> => {
