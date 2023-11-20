@@ -1,6 +1,7 @@
 'use client'
+
 import { useEffect, useState } from 'react'
-import { FilmEnglish } from '@/components/FilmEnglish'
+import FilmEnglish from '@/components/FilmEnglish'
 import { TFilm } from '@/types/index'
 
 const fetchFilms = async (): Promise<TFilm[] | null> => {

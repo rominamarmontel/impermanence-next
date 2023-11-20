@@ -5,7 +5,7 @@ import styles from './styles.module.css'
 import { useLanguage } from '@/app/LanguageContext'
 import React from 'react'
 
-export const FilmEnglish = ({
+const FilmEnglish = ({
   _id,
   category,
   title,
@@ -54,3 +54,5 @@ export const FilmEnglish = ({
     </div>
   )
 }
+FilmEnglish.displayName = 'FilmEnglish'
+export default FilmEnglish

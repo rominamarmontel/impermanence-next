@@ -4,7 +4,7 @@ const nextConfig = {
     domains: ['res.cloudinary.com', 'lh3.googleusercontent.com'],
   },
   env: {
-    NEXTAUTH_URL: 'http://localhost:3000', // Your actual URL here
+    NEXTAUTH_URL: `${process.env.NEXTAUTH_URL}`,
   },
 }
 module.exports = nextConfig
