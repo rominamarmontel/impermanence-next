@@ -70,7 +70,6 @@ const Navbar = () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
-
   return (
     <>
       {windowWidth !== undefined && windowWidth <= 992 ? (
@@ -82,7 +81,8 @@ const Navbar = () => {
               films
             </h1>
           </Link>
-          <header className={styles.header}>
+
+          <header className={`${styles.header}`}>
             <div
               className={`openbtn1 ${isActive ? 'active' : ''}`}
               onClick={toggleFunction}
@@ -177,9 +177,6 @@ const Navbar = () => {
                 </div>
               </>
             ) : (
-              // <Link className="btn" href={'/login'}>
-              //   Login
-              // </Link>
               <>
                 <div className="mt-0 grid place-content-center">
                   <CategoriesList />
@@ -199,7 +196,7 @@ const Navbar = () => {
                         className={styles.About}
                         href={isEnglish ? '/en/about' : '/about'}
                       >
-                        à propos
+                        {isEnglish ? 'à propos' : 'about'}
                       </Link>
                     </li>
                     <li>
@@ -229,8 +226,11 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <button onClick={handleLanguageChange} className="btn">
-                        {isEnglish ? ' French' : 'English'}
+                      <button
+                        onClick={handleLanguageChange}
+                        className="second-btn"
+                      >
+                        {isEnglish ? ' FR' : 'EN'}
                       </button>
                     </li>
                   </ul>

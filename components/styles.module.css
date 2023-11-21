@@ -22,6 +22,7 @@
     font-family: 'Charm', cursive;
     text-align: center;
     line-height: 40px;
+    font-weight: 600;
 }
 
 .Footer {
@@ -104,9 +105,10 @@
     line-height: 100%;
 }
 .CatName {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
-    font-size: small;
+    font-family: "myfont-medium";
+    font-weight: 600;
+    letter-spacing: .05rem;
+    font-size: .7rem;
     background-color: black;
     color: white;
     margin-bottom: 16px;
@@ -184,14 +186,20 @@
     cursor: pointer;
 }
 
-
 @media (max-width: 992px) {
+.AboutTitle {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: #333333;
+    margin-bottom: 50px;
+}
 .NavbarTitleSmall {
     display: flex;
-    font-size: 20px;
+    font-size: 25px;
     font-family: 'Charm', cursive;
     text-align: center;
     line-height: 25px;
+    font-weight: 600;
 }
   .HeaderMenu {
     display: flex;
@@ -219,22 +227,40 @@
     left: 0;
     height: 100vh;
     background-color: #f4ede6;
+    width: 100%;
+    overflow: auto;
   }
   .HambergerMenu[aria-hidden='false'] {
     display: flex;
   }
-  .HambergerMenu ul {
+ .MenuOpen ul {
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    margin-top: 100px;
+    gap: 10px;
   }
-  .HambergerMenu li {
+ .MenuOpen li {
     text-align: left;
-    font-size: 20px;
-    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-family: 'myfont-medium';
+    border-top: 1px solid #333333;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
-  .header {
+.MenuOpen li:last-child {
+    padding-bottom: 10px;
+  }
+.showFilmList ul {
+    margin-top: 0px;
+  }
+.showFilmList li {
+    border-top: none;
+    text-align: right;
+    font-size: 1.3rem;
+  }
+  .showFilmList li:last-child {
+    border-bottom: none;
+  }
+.header {
     position: relative;
     display: flex;
     justify-content: flex-end;

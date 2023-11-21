@@ -12,7 +12,7 @@ const AboutPage = () => {
     'https://res.cloudinary.com/dyu65fpse/image/upload/v1699889309/nextImpermanence_images/ixy3jtihoffobuvdzy2j.jpg'
   return (
     <div>
-      <div className="w-[50%]">
+      <div className="md:w-[50%]">
         <h1 className={styles.AboutTitle}>about impermanence films</h1>
 
         <p className={styles.AboutText}>

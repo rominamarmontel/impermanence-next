@@ -13,7 +13,7 @@ const AboutPage = () => {
   return (
     <div>
       <div>
-        <div className="w-[50%]">
+        <div className="md:w-[50%]">
           <h1 className={styles.AboutTitle}>à propos d’impermanence films</h1>
 
           <p className={styles.AboutText}>
@@ -39,7 +39,7 @@ const AboutPage = () => {
           </div>
         </div>
         <div className="w-full flex gap-10 flex-wrap justify-between">
-          <p className={`w-[45%] ${styles.AboutText}`}>
+          <p className={`md:w-[45%] ${styles.AboutText}`}>
             Impermanence Films soutient essentiellement des documentaires et des
             films essais, autoproductions, films d’artistes, oeuvres
             collectives… Son apport à la production permet à l’auteur de garder
@@ -57,7 +57,7 @@ const AboutPage = () => {
             esprit revendicateur pour plus de place des femmes dans la création
             visuelle et pour la production indépendante.
           </p>
-          <p className={`w-[45%] ${styles.AboutText}`}>
+          <p className={`md:w-[45%] ${styles.AboutText}`}>
             Dans la continuité des Rencontres Siréales, un travail associatif de
             programmation -le premier projet d’Impermanence- a été accueilli en
             résidence dans une friche culturelle de la région parisienne, Anis

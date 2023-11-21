@@ -3,7 +3,34 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+/* ultraLight truetype=ttf*/
+@font-face {
+  font-family: "myfont-ultraLight";
+  src: url("../public/helvetica-neue-55-cdnfonts/HelveticaNeueUltraLightItal.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Light opentype=otf*/
+@font-face {
+  font-family: "myfont-light";
+  src: url("../public//helvetica-neue-55-cdnfonts/HelveticaNeueLight.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Medium */
+@font-face {
+  font-family: "myfont-medium";
+  src: url("../public/helvetica-neue-55-cdnfonts/HelveticaNeueMedium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Heavy */
+@font-face {
+  font-family: "myfont-heavy";
+  src: url("../public/helvetica-neue-55-cdnfonts/HelveticaNeue-HeavyCond.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 .textp {
   @apply  text-base font-light
@@ -36,6 +63,18 @@ h1 {
 .primary-btn:hover {
   background-color: cadetblue;
 }
+.second-btn {
+  font-family: "myfont-medium";
+  font-size: .7rem;
+  background-color: #c4010a;
+  padding: 6px 8px;
+  color: white;
+  /* border: 1px solid #3333; */
+  border-radius: 50%;
+}
+.openbtn1 {
+}
+
 input, textarea {
   @apply px-4 py-2 border border-slate-300 rounded-sm
 }
