@@ -202,7 +202,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         className={styles.About}
-                        href={isEnglish ? '/en/contact' : '/contact'}
+                        href={`mailto:impermanencefilms@gmail.com`}
                       >
                         contact
                       </Link>
