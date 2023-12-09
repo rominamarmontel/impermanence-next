@@ -153,6 +153,7 @@ const CreateFilmForm = () => {
         }),
       })
       if (res.ok) {
+        toast.success('Film created successfully')
         console.log(res)
         router.push('/dashboard')
       }
