@@ -54,6 +54,7 @@ const DetailsFilm = ({ params }: { params: { id: string } }) => {
   if (film === null) {
     return <div>Loading...</div>
   }
+  console.log(film)
 
   return (
     <>
