@@ -46,7 +46,7 @@ const OneFilm = ({
           style={{ position: 'relative' }}
           className="xl:w-2/3 md:w-full aspect-video relative"
         >
-          {imageData && imageData.length > 0 && (
+          {imageData && imageData.length > 0 ? (
             <Image
               src={imageData[0].url}
               alt={originalTitle}
@@ -55,40 +55,56 @@ const OneFilm = ({
               className="object-cover object-center"
               priority
             />
+          ) : (
+            <div>Loading...</div>
           )}
-          {copyright && (
+          {copyright ? (
             <div className="flex text-sm my-5 absolute bottom-0 right-3 text-white font-light shadow-lg">
               &copy;{copyright}
             </div>
+          ) : (
+            <div>Loading...</div>
           )}
         </div>
         <div className="xl:w-1/3">
-          {title && (
+          {title ? (
             <div className="flex flex-col items-left text-2xl mt-5">
               <strong>{title.fr}</strong>
             </div>
+          ) : (
+            <div>Loading...</div>
           )}
-          {category && (
+          {category ? (
             <div className="font-bold text-red-700 italic text-sm">
               {category.catName.toUpperCase()}
             </div>
+          ) : (
+            <div>Loading...</div>
           )}
-          {createdYear && <div className="font-bold">{createdYear}</div>}
-          {synopsis && (
+          {createdYear ? (
+            <div className="font-bold">{createdYear}</div>
+          ) : (
+            <div>Loading...</div>
+          )}
+          {synopsis ? (
             <div className="flex flex-col items-left text-sm my-5">
               <div className="textp">{synopsis.fr}</div>
             </div>
+          ) : (
+            <div>Loading...</div>
           )}
         </div>
       </div>
 
-      {originalTitle && (
+      {originalTitle ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>TITLE ORIGINAL</strong>
           <div className="textp">{originalTitle}</div>
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
-      {directedBy && (
+      {directedBy ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>RÉALISATION</strong>
           {directedBy.split('\n').map((line, index) => (
@@ -97,8 +113,10 @@ const OneFilm = ({
             </div>
           ))}
         </div>
+      ) : (
+        <div>Loading</div>
       )}
-      {producedBy && (
+      {producedBy ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>PRODUCTION</strong>
           {producedBy.split('\n').map((line, index) => (
@@ -107,8 +125,10 @@ const OneFilm = ({
             </div>
           ))}
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
-      {author && (
+      {author ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>
             {author && author.includes('\n') ? 'AUTEUR(E)S' : 'AUTEUR(E)'}
@@ -119,21 +139,27 @@ const OneFilm = ({
             </div>
           ))}
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
-      {format && (
+      {format ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>FORMAT</strong>
           <div className="textp">{format}</div>
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
-      {duration && (
+      {duration ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>DUREE</strong>
           <div className="textp">{duration}</div>
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
 
-      {partner && (
+      {partner ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>
             {partner.fr && partner.fr.includes('\n')
@@ -146,8 +172,10 @@ const OneFilm = ({
             </div>
           ))}
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
-      {festivalAndAward && (
+      {festivalAndAward ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>FESTIVALS & RÉCOMPENSES</strong>
           {festivalAndAward.fr.split('\n').map((line, index) => (
@@ -156,14 +184,18 @@ const OneFilm = ({
             </div>
           ))}
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
-      {distribution && (
+      {distribution ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>DISTRIBUTION</strong>
           <div className="textp">{distribution}</div>
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
-      {internationalSales && (
+      {internationalSales ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>VENTES INTERNATIONALES</strong>
           {internationalSales.split('\n').map((line, index) => (
@@ -172,20 +204,26 @@ const OneFilm = ({
             </div>
           ))}
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
-      {stageOfProduction && (
+      {stageOfProduction ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>ÉTAPE DE PRODUCTION</strong>
           <div className="textp">{stageOfProduction}</div>
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
-      {genre && (
+      {genre ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>GENRE</strong>
           <div className="textp">{genre}</div>
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
-      {crew && (
+      {crew ? (
         <div className="flex flex-col items-left text-sm my-5">
           <strong>CREW</strong>
           {crew.split('\n').map((line, index) => (
@@ -194,10 +232,12 @@ const OneFilm = ({
             </div>
           ))}
         </div>
+      ) : (
+        <div>Loading...</div>
       )}
 
       <div className="flex flex-col items-left text-sm my-5">
-        {links && links.length > 0 && (
+        {links && links.length > 0 ? (
           <div>
             <button onClick={handleClickVideoOnDemand}>
               <strong className="flex items-left">
@@ -224,11 +264,13 @@ const OneFilm = ({
                 ))}
             </div>
           </div>
+        ) : (
+          <div>Loading...</div>
         )}
       </div>
 
       <div className="flex flex-col items-left text-sm my-5">
-        {download && (
+        {download ? (
           <div>
             <button onClick={handleClickDownload}>
               <strong className="flex items-left">
@@ -248,6 +290,8 @@ const OneFilm = ({
               )}
             </div>
           </div>
+        ) : (
+          <div>Loading...</div>
         )}
       </div>
     </div>
